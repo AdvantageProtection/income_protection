@@ -13,10 +13,9 @@
 
 <style>
 /* ============================================================
-   ADVANTAGE PROTECTION · APPOINTMENT BOOKING PAGE
+   ADVANTAGE PROTECTION · APPOINTMENT BOOKING PAGE · V2
    Generic template — safe to send to any client type.
-   Duplicate & edit for each variant (re-mortgage, product
-   transfer, first-time buyer, directors' cover etc.)
+   Duplicate & edit for each variant.
    ============================================================ */
 
 :root {
@@ -74,33 +73,62 @@ img { max-width: 100%; display: block; }
 .masthead {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding: 14px var(--gutter);
     border-bottom: 1px solid var(--rule);
     background: var(--paper);
 }
 .masthead img { height: 34px; width: auto; }
+.masthead .mast-tag {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent-deep);
+    border: 1px solid var(--accent-rule);
+    border-radius: 999px;
+    padding: 5px 14px;
+    background: var(--card);
+}
 
 /* ---- Shell ---- */
 .shell {
-    max-width: 860px;
+    max-width: 980px;
     margin-inline: auto;
     padding-inline: var(--gutter);
 }
 
-/* ---- Hero ---- */
+/* ---- Hero (two-column on desktop, soft brand wash behind) ---- */
 .hero {
-    padding-block: clamp(40px, 7vh, 80px) clamp(34px, 5vh, 60px);
-    display: grid;
-    gap: 28px;
-    justify-items: start;
+    position: relative;
+    padding-block: clamp(44px, 8vh, 92px) clamp(38px, 6vh, 68px);
 }
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0 calc(var(--gutter) * -1) 0 calc(var(--gutter) * -1);
+    background:
+        radial-gradient(720px 420px at 12% 0%, rgba(233, 24, 55, 0.06), transparent 62%),
+        radial-gradient(560px 380px at 92% 30%, rgba(61, 90, 110, 0.07), transparent 60%);
+    pointer-events: none;
+}
+.hero-grid {
+    position: relative;
+    display: grid;
+    gap: clamp(28px, 4vw, 52px);
+    align-items: start;
+}
+@media (min-width: 880px) {
+    .hero-grid { grid-template-columns: minmax(0, 1.5fr) minmax(280px, 1fr); }
+}
+
 .hero-logo {
     width: auto;
     max-width: min(320px, 70vw);
     height: auto;
     max-height: 96px;
     object-fit: contain;
+    margin-bottom: 26px;
 }
+
 .eyebrow {
     display: inline-flex;
     align-items: center;
@@ -116,10 +144,11 @@ img { max-width: 100%; display: block; }
     height: 2px;
     background: var(--accent);
 }
+
 .hero h1 {
-    font-size: clamp(30px, 4.6vw, 50px);
+    font-size: clamp(32px, 4.8vw, 54px);
     font-weight: 700;
-    line-height: 1.06;
+    line-height: 1.05;
     letter-spacing: -0.03em;
     color: var(--ink);
     text-wrap: balance;
@@ -132,6 +161,7 @@ img { max-width: 100%; display: block; }
     letter-spacing: -0.02em;
     color: var(--accent-deep);
 }
+
 .hero-standfirst {
     max-width: 54ch;
     font-size: clamp(15.5px, 1.35vw, 18px);
@@ -141,17 +171,68 @@ img { max-width: 100%; display: block; }
 }
 .hero-standfirst strong { font-weight: 700; }
 
+/* At-a-glance card — gives the hero a second column on desktop */
+.glance {
+    padding: 24px;
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: 16px;
+    box-shadow: 0 14px 34px -18px rgba(28,47,61,0.22);
+}
+.glance h2 {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--accent-deep);
+    margin-bottom: 12px;
+}
+.glance ul { list-style: none; }
+.glance li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 9px 0;
+    font-size: 14.5px;
+    line-height: 1.55;
+    border-bottom: 1px solid var(--rule);
+}
+.glance li:last-child { border-bottom: none; padding-bottom: 0; }
+.glance .check {
+    width: 18px;
+    height: 18px;
+    flex: 0 0 auto;
+    margin-top: 2px;
+    color: var(--accent);
+}
+.glance .g-foot {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--rule);
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--success-deep);
+}
+
 /* ---- Sections ---- */
 .section {
-    padding-block: clamp(36px, 6vh, 64px);
+    padding-block: clamp(38px, 6vh, 68px);
     border-top: 1px solid var(--rule);
 }
+.section .overline {
+    display: block;
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+}
 .section h2 {
-    font-size: clamp(22px, 3vw, 32px);
+    font-size: clamp(23px, 3.1vw, 34px);
     font-weight: 700;
     line-height: 1.12;
     letter-spacing: -0.026em;
-    color: var(--accent-deep);
+    color: var(--ink);
     text-wrap: balance;
     margin-bottom: 22px;
 }
@@ -176,12 +257,12 @@ img { max-width: 100%; display: block; }
     border-radius: 16px;
     margin-top: 26px;
 }
-@media (max-width: 620px) {
-    .booking-frame iframe { height: 1150px; }  /* was 860px */
+@media (min-width: 560px) {
+    .adviser { grid-template-columns: 150px minmax(0, 1fr); gap: 28px; }
 }
 .adviser-photo {
     width: 100%;
-    max-width: 132px;
+    max-width: 150px;
     aspect-ratio: 3 / 4;
     border-radius: 10px;
     overflow: hidden;
@@ -212,7 +293,7 @@ img { max-width: 100%; display: block; }
     box-shadow: 0 0 0 3px var(--accent-wash);
 }
 .adviser h3 {
-    font-size: 21px;
+    font-size: 22px;
     font-weight: 700;
     letter-spacing: -0.022em;
     margin-bottom: 3px;
@@ -224,22 +305,39 @@ img { max-width: 100%; display: block; }
 }
 .adviser p { font-size: 14.5px; line-height: 1.72; }
 
-/* ---- Keyed list ---- */
-.keyed {
+/* ---- Numbered steps ---- */
+.steps {
     list-style: none;
+    counter-reset: step;
     max-width: var(--measure);
-    border-top: 1px solid var(--rule);
     margin-top: 6px;
 }
-.keyed li { padding: 16px 0; border-bottom: 1px solid var(--rule); }
-.keyed .k-title {
+.steps li {
+    counter-increment: step;
+    position: relative;
+    padding: 20px 0 20px 64px;
+    border-bottom: 1px solid var(--rule);
+}
+.steps li:first-child { border-top: 1px solid var(--rule); }
+.steps li::before {
+    content: counter(step, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 20px;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 26px;
+    line-height: 1;
+    color: var(--accent-deep);
+}
+.steps .k-title {
     display: block;
-    font-size: 15.5px;
+    font-size: 16px;
     font-weight: 650;
     letter-spacing: -0.012em;
     margin-bottom: 4px;
 }
-.keyed .k-body {
+.steps .k-body {
     display: block;
     font-size: 14.5px;
     line-height: 1.68;
@@ -300,7 +398,7 @@ img { max-width: 100%; display: block; }
 
 /* ---- BOOKING IFRAME ---- */
 .booking-frame {
-    max-width: 860px;
+    max-width: 940px;
     margin-top: 10px;
     background: var(--card);
     border: 1px solid var(--rule);
@@ -333,21 +431,34 @@ img { max-width: 100%; display: block; }
 /* ---- Footer ---- */
 .colophon {
     border-top: 1px solid var(--rule-strong);
-    padding-block: 36px 44px;
+    padding-block: 38px 46px;
+    display: grid;
+    gap: 24px;
+}
+@media (min-width: 760px) {
+    .colophon { grid-template-columns: minmax(0, 1fr) auto; align-items: end; }
 }
 .colophon .motto {
     font-family: var(--font-serif);
     font-style: italic;
-    font-size: clamp(19px, 2.2vw, 24px);
+    font-size: clamp(20px, 2.3vw, 26px);
     margin-bottom: 8px;
 }
 .colophon .motto span { color: var(--accent-deep); }
 .colophon .fca { font-size: 13px; font-weight: 600; margin-bottom: 12px; }
 .colophon .fca strong { color: var(--accent-deep); }
 .colophon .legal { font-size: 13px; line-height: 1.7; max-width: 62ch; }
+.colophon .foot-right {
+    display: grid;
+    gap: 8px;
+    justify-items: start;
+}
+@media (min-width: 760px) { .colophon .foot-right { justify-items: end; text-align: right; } }
+.colophon .ref { font-size: 12.5px; color: var(--ink); }
 
 @media (max-width: 620px) {
     .hero { padding-block: 30px 34px; }
+    .hero::before { inset: 0 -16px 0 -16px; }
     .section { padding-block: 34px; }
     .adviser { padding: 18px; }
     .booking-frame iframe { height: 1150px; }
@@ -358,28 +469,56 @@ img { max-width: 100%; display: block; }
 
 <header class="masthead">
     <img src="bbb.png" alt="Advantage Protection">
+    <span class="mast-tag">Free appointment &middot; No obligation</span>
 </header>
 
 <main class="shell">
 
     <!-- ============ HERO ============ -->
     <section class="hero">
-        <img class="hero-logo" src="bbb.png" alt="Advantage Protection">
+        <div class="hero-grid">
+            <div>
+                <img class="hero-logo" src="bbb.png" alt="Advantage Protection">
 
-        <div>
-            <p class="eyebrow">Your life insurance appointment</p>
-            <h1>Life insurance for your new mortgage <em>Book a time that suits you</em></h1>
-            <p class="hero-standfirst">
-                We called to introduce ourselves and arrange your <strong>initial appointment</strong>
-                to discuss life insurance for your new mortgage. You'll be meeting our financial
-                adviser, <strong>Laurence</strong> — the appointment usually takes around
-                <strong>10–15 minutes</strong>, at a time you choose below.
-            </p>
+                <p class="eyebrow">Your life insurance appointment</p>
+                <h1>Life insurance for your new mortgage <em>Book a time that suits you</em></h1>
+                <p class="hero-standfirst">
+                    We called to introduce ourselves and arrange your <strong>initial appointment</strong>
+                    to discuss life insurance for your new mortgage. You'll be meeting our financial
+                    adviser, <strong>Laurence</strong> — the appointment usually takes around
+                    <strong>10–15 minutes</strong>, at a time you choose below.
+                </p>
+            </div>
+
+            <!-- At a glance -->
+            <aside class="glance" aria-label="Your appointment at a glance">
+                <h2>YOUR APPOINTMENT AT A GLANCE</h2>
+                <ul>
+                    <li>
+                        <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                        <span><strong>10–15 minutes</strong> — short and informal</span>
+                    </li>
+                    <li>
+                        <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                        <span>With <strong>Laurence</strong>, our specialist adviser</span>
+                    </li>
+                    <li>
+                        <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                        <span>Plain English — no jargon, no pressure</span>
+                    </li>
+                    <li>
+                        <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                        <span>Written summary sent afterwards</span>
+                    </li>
+                </ul>
+                <p class="g-foot">Completely free — at every stage.</p>
+            </aside>
         </div>
     </section>
 
     <!-- ============ YOUR ADVISER ============ -->
     <section class="section">
+        <span class="overline">Who you'll speak to</span>
         <h2>Meet your adviser</h2>
         <div class="adviser">
             <div class="adviser-photo">
@@ -401,12 +540,13 @@ img { max-width: 100%; display: block; }
 
     <!-- ============ WHAT TO EXPECT ============ -->
     <section class="section">
+        <span class="overline">The appointment</span>
         <h2>What to expect</h2>
         <p class="prose">
             Your appointment is a short, informal conversation — no jargon, no pressure.
             Here's how it flows:
         </p>
-        <ul class="keyed">
+        <ol class="steps">
             <li>
                 <span class="k-title">A clear overview of your options</span>
                 <span class="k-body">Laurence walks you through the life insurance options relevant to your new mortgage, in plain English.</span>
@@ -419,11 +559,12 @@ img { max-width: 100%; display: block; }
                 <span class="k-title">A written summary afterwards</span>
                 <span class="k-body">Following the appointment, we'll send you a summary of everything discussed, including a tailored recommendation of cost-effective providers.</span>
             </li>
-        </ul>
+        </ol>
     </section>
 
     <!-- ============ WHAT TO HAVE TO HAND ============ -->
     <section class="section">
+        <span class="overline">Before we speak</span>
         <h2>What to have to hand</h2>
         <p class="prose">
             If you have them available, it helps to have details of any existing life insurance
@@ -441,6 +582,7 @@ img { max-width: 100%; display: block; }
 
     <!-- ============ OUR COMMITMENT ============ -->
     <section class="section">
+        <span class="overline">Why Advantage</span>
         <h2>Our commitment to you</h2>
         <p class="prose">
             At Advantage, we're proud to be an <strong>open market agency</strong>, giving us access
@@ -457,29 +599,43 @@ img { max-width: 100%; display: block; }
 
     <!-- ============ BOOK YOUR APPOINTMENT ============ -->
     <section class="section" id="book">
+        <span class="overline">Choose your time</span>
         <h2>Book your appointment</h2>
         <p class="prose">
             Pick a time that suits you using the calendar below. Once booked, you'll receive
             a confirmation with everything you need for the call.
         </p>
 
-        <iframe src='https://bookings.cloud.microsoft/book/AdvantageProtectionxHooprecruitment@NETORGFT5872714.onmicrosoft.com/?ismsaljsauthenabled' width='100%' height='100%' scrolling='yes' style='border:0'></iframe>
+        <div class="booking-frame">
+            <iframe
+                id="booking"
+                src="https://bookings.cloud.microsoft/book/AdvantageProtectionxHooprecruitment@NETORGFT5872714.onmicrosoft.com/?ismsaljsauthenabled"
+                title="Book your appointment with Laurence"
+                loading="lazy">
+            </iframe>
+        </div>
 
         <p class="booking-note">
             Calendar not loading, or prefer a full-screen view?
-            <a id="bookingFallback" href="https://bookings.cloud.microsoft/book/AdvantageProtection@NETORGFT5872714.onmicrosoft.com/?ismsaljsauthenabled"
+            <a id="bookingFallback" href="https://bookings.cloud.microsoft/book/AdvantageProtectionxHooprecruitment@NETORGFT5872714.onmicrosoft.com/?ismsaljsauthenabled"
                target="_blank" rel="noopener">Open the booking calendar in a new tab</a>.
         </p>
     </section>
 
     <!-- ============ FOOTER ============ -->
     <footer class="colophon">
-        <p class="motto">Our Experience. <span>Your Advantage.</span></p>
-        <p class="fca">Advantage Financial Solutions &middot; <strong>FCA 965036</strong></p>
-        <p class="legal">
-            Protection advice is free. If a protection policy is arranged, Advantage FS is paid
-            commission by the provider — never by you.
-        </p>
+        <div>
+            <p class="motto">Our Experience. <span>Your Advantage.</span></p>
+            <p class="fca">Advantage Financial Solutions &middot; <strong>FCA 965036</strong></p>
+            <p class="legal">
+                Protection advice is free. If a protection policy is arranged, Advantage FS is paid
+                commission by the provider — never by you.
+            </p>
+        </div>
+        <div class="foot-right">
+            <p class="ref">&copy; 2026 Advantage Financial Solutions</p>
+            <p class="ref">Company no. 12291836</p>
+        </div>
     </footer>
 
 </main>
@@ -488,10 +644,18 @@ img { max-width: 100%; display: block; }
 (function () {
     var iframe = document.getElementById('booking');
     var note = document.querySelector('.booking-note');
-    var warned = false;
-    iframe.addEventListener('error', function () {
-        if (!warned) { warned = true; note.style.fontWeight = '600'; }
-    });
+    var loaded = false;
+
+    iframe.addEventListener('load', function () { loaded = true; });
+
+    setTimeout(function () {
+        if (!loaded) {
+            note.innerHTML = 'The calendar is having trouble loading below — ' +
+                '<a href="' + iframe.src + '" target="_blank" rel="noopener">' +
+                'open the booking calendar in a new tab</a> instead.';
+            note.style.fontWeight = '600';
+        }
+    }, 6000);
 })();
 </script>
 
