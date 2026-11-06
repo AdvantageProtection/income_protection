@@ -45,8 +45,6 @@
 
     --font-display: 'Bricolage Grotesque', system-ui, sans-serif;
     --font-serif: 'Instrument Serif', Georgia, serif;
-
-    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -80,10 +78,7 @@ img { max-width: 100%; display: block; }
     border-bottom: 1px solid var(--rule);
     background: var(--paper);
 }
-.masthead img {
-    height: 34px;
-    width: auto;
-}
+.masthead img { height: 34px; width: auto; }
 
 /* ---- Shell ---- */
 .shell {
@@ -99,7 +94,6 @@ img { max-width: 100%; display: block; }
     gap: 28px;
     justify-items: start;
 }
-
 .hero-logo {
     width: auto;
     max-width: min(320px, 70vw);
@@ -107,7 +101,6 @@ img { max-width: 100%; display: block; }
     max-height: 96px;
     object-fit: contain;
 }
-
 .eyebrow {
     display: inline-flex;
     align-items: center;
@@ -123,7 +116,6 @@ img { max-width: 100%; display: block; }
     height: 2px;
     background: var(--accent);
 }
-
 .hero h1 {
     font-size: clamp(30px, 4.6vw, 50px);
     font-weight: 700;
@@ -140,7 +132,6 @@ img { max-width: 100%; display: block; }
     letter-spacing: -0.02em;
     color: var(--accent-deep);
 }
-
 .hero-standfirst {
     max-width: 54ch;
     font-size: clamp(15.5px, 1.35vw, 18px);
@@ -155,7 +146,6 @@ img { max-width: 100%; display: block; }
     padding-block: clamp(36px, 6vh, 64px);
     border-top: 1px solid var(--rule);
 }
-
 .section h2 {
     font-size: clamp(22px, 3vw, 32px);
     font-weight: 700;
@@ -165,7 +155,6 @@ img { max-width: 100%; display: block; }
     text-wrap: balance;
     margin-bottom: 22px;
 }
-
 .prose {
     max-width: var(--measure);
     font-size: clamp(15px, 1.15vw, 16.5px);
@@ -233,10 +222,7 @@ img { max-width: 100%; display: block; }
     font-weight: 500;
     margin-bottom: 12px;
 }
-.adviser p {
-    font-size: 14.5px;
-    line-height: 1.72;
-}
+.adviser p { font-size: 14.5px; line-height: 1.72; }
 
 /* ---- Keyed list ---- */
 .keyed {
@@ -245,10 +231,7 @@ img { max-width: 100%; display: block; }
     border-top: 1px solid var(--rule);
     margin-top: 6px;
 }
-.keyed li {
-    padding: 16px 0;
-    border-bottom: 1px solid var(--rule);
-}
+.keyed li { padding: 16px 0; border-bottom: 1px solid var(--rule); }
 .keyed .k-title {
     display: block;
     font-size: 15.5px;
@@ -304,11 +287,7 @@ img { max-width: 100%; display: block; }
     max-width: var(--measure);
     margin-top: 6px;
 }
-.signature .sig-label {
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--success-deep);
-}
+.signature .sig-label { font-size: 15px; font-weight: 700; color: var(--success-deep); }
 .signature .sig-value {
     display: inline-flex;
     align-items: center;
@@ -317,12 +296,7 @@ img { max-width: 100%; display: block; }
     font-weight: 720;
     letter-spacing: -0.015em;
 }
-.signature .sig-check {
-    width: 20px;
-    height: 20px;
-    flex: 0 0 auto;
-    color: var(--success);
-}
+.signature .sig-check { width: 20px; height: 20px; flex: 0 0 auto; color: var(--success); }
 
 /* ---- BOOKING IFRAME ---- */
 .booking-frame {
@@ -368,17 +342,9 @@ img { max-width: 100%; display: block; }
     margin-bottom: 8px;
 }
 .colophon .motto span { color: var(--accent-deep); }
-.colophon .fca {
-    font-size: 13px;
-    font-weight: 600;
-    margin-bottom: 12px;
-}
+.colophon .fca { font-size: 13px; font-weight: 600; margin-bottom: 12px; }
 .colophon .fca strong { color: var(--accent-deep); }
-.colophon .legal {
-    font-size: 13px;
-    line-height: 1.7;
-    max-width: 62ch;
-}
+.colophon .legal { font-size: 13px; line-height: 1.7; max-width: 62ch; }
 
 @media (max-width: 620px) {
     .hero { padding-block: 30px 34px; }
@@ -500,16 +466,15 @@ img { max-width: 100%; display: block; }
         <div class="booking-frame">
             <iframe
                 id="booking"
-                src="https://bookings.cloud.microsoft/bookwithme/user/10b9fd8ea2e3415f836c8ae17fcb96d6@advantagefs.co.uk/meetingtype/JUnxvhpkLEe2wHsYEf8B3A2?anonymous&ismsaljsauthenabled&ep=mlink"
+                src="https://bookings.cloud.microsoft/book/AdvantageProtection@NETORGFT5872714.onmicrosoft.com/?ismsaljsauthenabled"
                 title="Book your appointment with Laurence"
-                loading="lazy"
-                allowfullscreen>
+                loading="lazy">
             </iframe>
         </div>
 
         <p class="booking-note">
             Calendar not loading, or prefer a full-screen view?
-            <a id="bookingFallback" href="https://bookings.cloud.microsoft/bookwithme/user/10b9fd8ea2e3415f836c8ae17fcb96d6@advantagefs.co.uk/meetingtype/JUnxvhpkLEe2wHsYEf8B3A2?anonymous&ismsaljsauthenabled&ep=mlink"
+            <a id="bookingFallback" href="https://bookings.cloud.microsoft/book/AdvantageProtection@NETORGFT5872714.onmicrosoft.com/?ismsaljsauthenabled"
                target="_blank" rel="noopener">Open the booking calendar in a new tab</a>.
         </p>
     </section>
@@ -527,17 +492,12 @@ img { max-width: 100%; display: block; }
 </main>
 
 <script>
-/* If the embedded calendar refuses to load (frame blocking),
-   show a hint so the user knows to use the fallback link. */
 (function () {
     var iframe = document.getElementById('booking');
     var note = document.querySelector('.booking-note');
     var warned = false;
     iframe.addEventListener('error', function () {
-        if (!warned) {
-            warned = true;
-            note.style.fontWeight = '600';
-        }
+        if (!warned) { warned = true; note.style.fontWeight = '600'; }
     });
 })();
 </script>
