@@ -176,8 +176,8 @@ img { max-width: 100%; display: block; }
     border-radius: 16px;
     margin-top: 26px;
 }
-@media (min-width: 560px) {
-    .adviser { grid-template-columns: 132px minmax(0, 1fr); gap: 26px; }
+@media (max-width: 620px) {
+    .booking-frame iframe { height: 1150px; }  /* was 860px */
 }
 .adviser-photo {
     width: 100%;
@@ -311,7 +311,7 @@ img { max-width: 100%; display: block; }
 .booking-frame iframe {
     display: block;
     width: 100%;
-    height: 760px;
+    height: 1200px;   /* was 760px */
     border: 0;
     background: #ffffff;
 }
