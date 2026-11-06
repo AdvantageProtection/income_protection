@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#fafbfc">
+<meta name="theme-color" content="#101114">
 <meta name="description" content="Book your business protection appointment with Advantage Protection — Relevant Life Cover and Executive Income Protection for company directors.">
 <title>Advantage Protection — Business Protection Appointment</title>
 
@@ -13,8 +13,10 @@
 
 <style>
 /* ============================================================
-   ADVANTAGE PROTECTION · BUSINESS PROTECTION BOOKING PAGE
+   ADVANTAGE PROTECTION · BUSINESS PROTECTION BOOKING PAGE · V2
    Combined variant: Relevant Life Cover + Executive IP.
+   Style: black-band editorial — dark hero & footer, light body,
+   brand red as the single accent. Sister-site aligned.
    ============================================================ */
 
 :root {
@@ -23,6 +25,7 @@
     --gutter: clamp(20px, 5vw, 72px);
     --measure: 68ch;
 
+    /* light body */
     --paper: #fafbfc;
     --paper-2: #f2f5f7;
     --ink: #222222;
@@ -30,11 +33,17 @@
     --rule-strong: #c4d2dc;
     --card: #ffffff;
 
+    /* black bands */
+    --black: #101114;
+    --black-2: #17181d;
+    --black-rule: rgba(255, 255, 255, 0.14);
+    --black-ink: #f4f5f7;
+    --black-ink-2: #b9bdc4;
+
     --accent: #e91837;
     --accent-deep: #b8122c;
     --accent-wash: rgba(233, 24, 55, 0.10);
     --accent-rule: rgba(233, 24, 55, 0.30);
-    --navy: #3d5a6e;
 
     --success: #0e9f5d;
     --success-deep: #0b7c49;
@@ -60,7 +69,7 @@ body {
 }
 
 img { max-width: 100%; display: block; }
-::selection { background: var(--accent-wash); color: var(--ink); }
+::selection { background: var(--accent); color: #fff; }
 
 :focus-visible {
     outline: 2px solid var(--accent);
@@ -68,44 +77,66 @@ img { max-width: 100%; display: block; }
     border-radius: 3px;
 }
 
-/* ---- Masthead ---- */
+/* ---- Masthead (black) ---- */
 .masthead {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    gap: 16px;
     padding: 14px var(--gutter);
-    border-bottom: 1px solid var(--rule);
-    background: var(--paper);
+    background: var(--black);
+    border-bottom: 1px solid var(--black-rule);
 }
 .masthead img { height: 34px; width: auto; }
+.masthead .mast-tag {
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--black-ink);
+    border: 1px solid var(--black-rule);
+    border-radius: 999px;
+    padding: 5px 14px;
+    white-space: nowrap;
+}
 
 /* ---- Shell ---- */
 .shell {
-    max-width: 860px;
+    max-width: 980px;
     margin-inline: auto;
     padding-inline: var(--gutter);
 }
 
-/* ---- Hero ---- */
+/* ---- Hero (black band, two-column) ---- */
 .hero {
-    padding-block: clamp(40px, 7vh, 80px) clamp(34px, 5vh, 60px);
+    background:
+        radial-gradient(760px 460px at 88% -10%, rgba(233, 24, 55, 0.16), transparent 62%),
+        var(--black);
+    color: var(--black-ink);
+    padding-block: clamp(44px, 8vh, 92px) clamp(40px, 7vh, 76px);
+}
+.hero-grid {
     display: grid;
-    gap: 28px;
-    justify-items: start;
+    gap: clamp(28px, 4vw, 56px);
+    align-items: start;
+}
+@media (min-width: 880px) {
+    .hero-grid { grid-template-columns: minmax(0, 1.5fr) minmax(280px, 1fr); }
 }
 .hero-logo {
     width: auto;
-    max-width: min(320px, 70vw);
+    max-width: min(300px, 60vw);
     height: auto;
-    max-height: 96px;
+    max-height: 84px;
     object-fit: contain;
+    margin-bottom: 28px;
 }
 .eyebrow {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    font-size: 15px;
+    font-size: 14.5px;
     font-weight: 500;
-    color: var(--ink);
+    color: var(--black-ink);
     margin-bottom: 16px;
 }
 .eyebrow::before {
@@ -115,11 +146,11 @@ img { max-width: 100%; display: block; }
     background: var(--accent);
 }
 .hero h1 {
-    font-size: clamp(30px, 4.6vw, 50px);
+    font-size: clamp(32px, 4.8vw, 54px);
     font-weight: 700;
-    line-height: 1.06;
+    line-height: 1.05;
     letter-spacing: -0.03em;
-    color: var(--ink);
+    color: #ffffff;
     text-wrap: balance;
     margin-bottom: 18px;
 }
@@ -128,28 +159,81 @@ img { max-width: 100%; display: block; }
     font-style: normal;
     font-weight: 600;
     letter-spacing: -0.02em;
-    color: var(--accent-deep);
+    color: #ff5c74;   /* accent lifted for dark ground */
 }
 .hero-standfirst {
     max-width: 54ch;
     font-size: clamp(15.5px, 1.35vw, 18px);
-    line-height: 1.65;
-    color: var(--ink);
+    line-height: 1.68;
+    color: var(--black-ink-2);
     text-wrap: pretty;
 }
-.hero-standfirst strong { font-weight: 700; }
+.hero-standfirst strong { color: var(--black-ink); font-weight: 700; }
 
-/* ---- Sections ---- */
+/* At-a-glance card (dark card inside dark band, outlined) */
+.glance {
+    padding: 24px;
+    background: var(--black-2);
+    border: 1px solid var(--black-rule);
+    border-radius: 16px;
+}
+.glance h2 {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: #ff5c74;
+    margin-bottom: 12px;
+}
+.glance ul { list-style: none; }
+.glance li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 9px 0;
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--black-ink-2);
+    border-bottom: 1px solid var(--black-rule);
+}
+.glance li:last-child { border-bottom: none; padding-bottom: 0; }
+.glance li strong { color: var(--black-ink); font-weight: 650; }
+.glance .check {
+    width: 18px;
+    height: 18px;
+    flex: 0 0 auto;
+    margin-top: 2px;
+    color: #ff5c74;
+}
+.glance .g-foot {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--black-rule);
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #4fd39a;
+}
+
+/* ---- Sections (light body) ---- */
 .section {
-    padding-block: clamp(36px, 6vh, 64px);
+    padding-block: clamp(38px, 6vh, 68px);
     border-top: 1px solid var(--rule);
 }
+.section .overline {
+    display: block;
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+}
 .section h2 {
-    font-size: clamp(22px, 3vw, 32px);
+    font-size: clamp(23px, 3.1vw, 34px);
     font-weight: 700;
     line-height: 1.12;
     letter-spacing: -0.026em;
-    color: var(--accent-deep);
+    color: var(--ink);
     text-wrap: balance;
     margin-bottom: 22px;
 }
@@ -175,16 +259,16 @@ img { max-width: 100%; display: block; }
     margin-top: 26px;
 }
 @media (min-width: 560px) {
-    .adviser { grid-template-columns: 132px minmax(0, 1fr); gap: 26px; }
+    .adviser { grid-template-columns: 150px minmax(0, 1fr); gap: 28px; }
 }
 .adviser-photo {
     width: 100%;
-    max-width: 132px;
+    max-width: 150px;
     aspect-ratio: 3 / 4;
     border-radius: 10px;
     overflow: hidden;
     background: var(--paper-2);
-    box-shadow: 0 10px 26px -12px rgba(28,47,61,0.34);
+    box-shadow: 0 10px 26px -12px rgba(16,17,20,0.4);
 }
 .adviser-photo img {
     width: 100%;
@@ -210,7 +294,7 @@ img { max-width: 100%; display: block; }
     box-shadow: 0 0 0 3px var(--accent-wash);
 }
 .adviser h3 {
-    font-size: 21px;
+    font-size: 22px;
     font-weight: 700;
     letter-spacing: -0.022em;
     margin-bottom: 3px;
@@ -222,30 +306,52 @@ img { max-width: 100%; display: block; }
 }
 .adviser p { font-size: 14.5px; line-height: 1.72; }
 
-/* ---- Product cards ---- */
+/* ---- Product cards (black headers, white bodies) ---- */
 .products {
     display: grid;
     gap: 20px;
-    max-width: var(--measure);
+    max-width: 100%;
     margin-top: 6px;
 }
 @media (min-width: 640px) {
     .products { grid-template-columns: 1fr 1fr; }
 }
 .product {
-    padding: 26px 24px;
     background: var(--card);
     border: 1px solid var(--rule);
-    border-top: 5px solid var(--accent);
-    border-radius: 14px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 14px 34px -18px rgba(16,17,20,0.25);
 }
-.product h3 {
+.product .p-head {
+    padding: 20px 24px 18px;
+    background: var(--black);
+    color: #ffffff;
+    position: relative;
+}
+.product .p-head::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 56px;
+    height: 3px;
+    background: var(--accent);
+}
+.product .p-head h3 {
     font-size: 19px;
     font-weight: 700;
     letter-spacing: -0.02em;
-    margin-bottom: 10px;
+    margin-bottom: 4px;
 }
-.product p {
+.product .p-head .p-tag {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 15px;
+    color: var(--black-ink-2);
+}
+.product .p-body { padding: 20px 24px 24px; }
+.product .p-body p {
     font-size: 14.5px;
     line-height: 1.72;
     margin-bottom: 14px;
@@ -255,7 +361,7 @@ img { max-width: 100%; display: block; }
     display: flex;
     align-items: flex-start;
     gap: 9px;
-    padding: 5px 0;
+    padding: 6px 0;
     font-size: 14px;
     line-height: 1.55;
 }
@@ -287,25 +393,25 @@ img { max-width: 100%; display: block; }
     align-items: center;
     gap: 9px;
     font-size: clamp(16.5px, 1.5vw, 19px);
-    font-weight: 720;
+    font-weight: 700;
     letter-spacing: -0.015em;
 }
 .signature .sig-check { width: 20px; height: 20px; flex: 0 0 auto; color: var(--success); }
 
 /* ---- BOOKING IFRAME ---- */
 .booking-frame {
-    max-width: 860px;
+    max-width: 940px;
     margin-top: 10px;
     background: var(--card);
     border: 1px solid var(--rule);
     border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 14px 34px -18px rgba(28,47,61,0.22);
+    box-shadow: 0 14px 34px -18px rgba(16,17,20,0.25);
 }
 .booking-frame iframe {
     display: block;
     width: 100%;
-    height: 760px;
+    height: 1200px;
     border: 0;
     background: #ffffff;
 }
@@ -324,28 +430,47 @@ img { max-width: 100%; display: block; }
 }
 .booking-note a:hover { color: var(--accent); border-bottom-color: var(--accent); }
 
-/* ---- Footer ---- */
+/* ---- Footer (black) ---- */
 .colophon {
-    border-top: 1px solid var(--rule-strong);
-    padding-block: 36px 44px;
+    background: var(--black);
+    color: var(--black-ink-2);
+    padding-block: 40px 48px;
+    display: grid;
+    gap: 24px;
+}
+@media (min-width: 760px) {
+    .colophon { grid-template-columns: minmax(0, 1fr) auto; align-items: end; }
 }
 .colophon .motto {
     font-family: var(--font-serif);
     font-style: italic;
-    font-size: clamp(19px, 2.2vw, 24px);
-    margin-bottom: 8px;
+    font-size: clamp(20px, 2.3vw, 26px);
+    color: #ffffff;
+    margin-bottom: 10px;
 }
-.colophon .motto span { color: var(--accent-deep); }
-.colophon .fca { font-size: 13px; font-weight: 600; margin-bottom: 12px; }
-.colophon .fca strong { color: var(--accent-deep); }
+.colophon .motto span { color: #ff5c74; }
+.colophon .fca { font-size: 13px; font-weight: 600; color: var(--black-ink); margin-bottom: 12px; }
+.colophon .fca strong { color: #ff5c74; }
 .colophon .legal { font-size: 13px; line-height: 1.7; max-width: 62ch; }
+.colophon .foot-right {
+    display: grid;
+    gap: 8px;
+    justify-items: start;
+}
+@media (min-width: 760px) { .colophon .foot-right { justify-items: end; text-align: right; } }
+.colophon .ref { font-size: 12.5px; }
 
 @media (max-width: 620px) {
-    .hero { padding-block: 30px 34px; }
+    .hero { padding-block: 32px 36px; }
     .section { padding-block: 34px; }
     .adviser { padding: 18px; }
-    .product { padding: 20px 18px; }
-    .booking-frame iframe { height: 860px; }
+    .product .p-head { padding: 18px 18px 16px; }
+    .product .p-body { padding: 18px; }
+    .booking-frame iframe { height: 1150px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition-duration: 0.01ms !important; }
 }
 </style>
 </head>
@@ -353,150 +478,201 @@ img { max-width: 100%; display: block; }
 
 <header class="masthead">
     <img src="bbb.png" alt="Advantage Protection">
+    <span class="mast-tag">Free appointment &middot; No obligation</span>
 </header>
 
-<main class="shell">
+<main>
 
     <!-- ============ HERO ============ -->
     <section class="hero">
-        <img class="hero-logo" src="bbb.png" alt="Advantage Protection">
+        <div class="shell">
+            <div class="hero-grid">
+                <div>
+                    <img class="hero-logo" src="bbb.png" alt="Advantage Protection">
 
-        <div>
-            <p class="eyebrow">Your business protection appointment</p>
-            <h1>Protection for you and your company <em>Book a time that suits you</em></h1>
-            <p class="hero-standfirst">
-                We called to introduce ourselves and arrange your <strong>initial appointment</strong>
-                to discuss business protection. You'll be meeting our financial adviser,
-                <strong>Laurence</strong> — the appointment usually takes around
-                <strong>10–15 minutes</strong>, at a time you choose below.
+                    <p class="eyebrow">Your business protection appointment</p>
+                    <h1>Protection for you and your company <em>Book a time that suits you</em></h1>
+                    <p class="hero-standfirst">
+                        We called to introduce ourselves and arrange your <strong>initial appointment</strong>
+                        to discuss business protection. You'll be meeting our financial adviser,
+                        <strong>Laurence</strong> — the appointment usually takes around
+                        <strong>10–15 minutes</strong>, at a time you choose below.
+                    </p>
+                </div>
+
+                <!-- At a glance -->
+                <aside class="glance" aria-label="Your appointment at a glance">
+                    <h2>At a glance</h2>
+                    <ul>
+                        <li>
+                            <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                            <span><strong>10–15 minutes</strong> — short and informal</span>
+                        </li>
+                        <li>
+                            <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                            <span>With <strong>Laurence</strong>, our specialist adviser</span>
+                        </li>
+                        <li>
+                            <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                            <span>Relevant Life &amp; Executive IP, explained plainly</span>
+                        </li>
+                        <li>
+                            <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                            <span>Written summary sent afterwards</span>
+                        </li>
+                    </ul>
+                    <p class="g-foot">Completely free — at every stage.</p>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <div class="shell">
+
+        <!-- ============ YOUR ADVISER ============ -->
+        <section class="section">
+            <span class="overline">Who you'll speak to</span>
+            <h2>Meet your adviser</h2>
+            <div class="adviser">
+                <div class="adviser-photo">
+                    <img src="adviser.png" alt="Laurence, Financial Adviser at Advantage Protection">
+                </div>
+                <div>
+                    <p class="adviser-meta">Your financial adviser</p>
+                    <h3>Laurence</h3>
+                    <p class="adviser-role">Specialist protection adviser</p>
+                    <p>
+                        Laurence will give you a clear overview of the options below and how they
+                        could work for you and your company. Afterwards, we'll send you a summary of
+                        everything discussed, including a tailored recommendation of cost-effective
+                        providers.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ THE TWO PRODUCTS ============ -->
+        <section class="section">
+            <span class="overline">The appointment</span>
+            <h2>What we'll cover</h2>
+            <p class="prose">
+                Two of the most valuable — and most commonly missed — protection options for
+                company directors:
             </p>
-        </div>
-    </section>
+            <div class="products">
+                <div class="product">
+                    <div class="p-head">
+                        <h3>Relevant Life Cover</h3>
+                        <p class="p-tag">Life cover, funded by the company</p>
+                    </div>
+                    <div class="p-body">
+                        <p>
+                            Life insurance provided by your company for you as a director — one of the
+                            most tax-efficient ways for a business to protect the people it relies on.
+                        </p>
+                        <ul>
+                            <li>
+                                <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                                <span>Paid for by the company, not from your own pocket</span>
+                            </li>
+                            <li>
+                                <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                                <span>Generally treated differently to a personal policy for tax purposes</span>
+                            </li>
+                            <li>
+                                <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                                <span>Covers individual directors and employees</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
 
-    <!-- ============ YOUR ADVISER ============ -->
-    <section class="section">
-        <h2>Meet your adviser</h2>
-        <div class="adviser">
-            <div class="adviser-photo">
-                <img src="adviser.png" alt="Laurence, Financial Adviser at Advantage Protection">
+                <div class="product">
+                    <div class="p-head">
+                        <h3>Executive Income Protection</h3>
+                        <p class="p-tag">Income cover, funded by the company</p>
+                    </div>
+                    <div class="p-body">
+                        <p>
+                            Company-funded cover that protects your income if illness or injury
+                            prevents you from working.
+                        </p>
+                        <ul>
+                            <li>
+                                <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                                <span>Paid for by the company as a business expense</span>
+                            </li>
+                            <li>
+                                <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                                <span>Helps the company continue covering your remuneration while you're off sick</span>
+                            </li>
+                            <li>
+                                <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                                <span>Protects both you and the business</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div>
-                <p class="adviser-meta">Your financial adviser</p>
-                <h3>Laurence</h3>
-                <p class="adviser-role">Specialist protection adviser</p>
-                <p>
-                    Laurence will give you a clear overview of the options below and how they
-                    could work for you and your company. Afterwards, we'll send you a summary of
-                    everything discussed, including a tailored recommendation of cost-effective
-                    providers.
-                </p>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- ============ THE TWO PRODUCTS ============ -->
-    <section class="section">
-        <h2>What we'll cover</h2>
-        <p class="prose">
-            Two of the most valuable — and most commonly missed — protection options for
-            company directors:
-        </p>
-        <div class="products">
-            <div class="product">
-                <h3>Relevant Life Cover</h3>
-                <p>
-                    Life insurance provided by your company for you as a director — one of the
-                    most tax-efficient ways for a business to protect the people it relies on.
-                </p>
-                <ul>
-                    <li>
-                        <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-                        <span>Paid for by the company, not from your own pocket</span>
-                    </li>
-                    <li>
-                        <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-                        <span>Generally treated differently to a personal policy for tax purposes</span>
-                    </li>
-                    <li>
-                        <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-                        <span>Covers individual directors and employees</span>
-                    </li>
-                </ul>
+        <!-- ============ OUR COMMITMENT ============ -->
+        <section class="section">
+            <span class="overline">Why Advantage</span>
+            <h2>Our commitment to you</h2>
+            <p class="prose">
+                At Advantage, we're proud to be an <strong>open market agency</strong>, giving us access
+                to a wide range of providers and policy options.
+            </p>
+            <div class="signature">
+                <span class="sig-label">Cost</span>
+                <span class="sig-value">
+                    <svg class="sig-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                    There are no fees for our services at any stage.
+                </span>
+            </div>
+        </section>
+
+        <!-- ============ BOOK YOUR APPOINTMENT ============ -->
+        <section class="section" id="book">
+            <span class="overline">Choose your time</span>
+            <h2>Book your appointment</h2>
+            <p class="prose">
+                Pick a time that suits you using the calendar below. Once booked, you'll receive
+                a confirmation with everything you need for the call.
+            </p>
+
+            <div class="booking-frame">
+                <iframe
+                    id="booking"
+                    src="https://bookings.cloud.microsoft/book/AdvantageProtection@NETORGFT5872714.onmicrosoft.com/?ismsaljsauthenabled"
+                    title="Book your business protection appointment with Laurence"
+                    loading="lazy">
+                </iframe>
             </div>
 
-            <div class="product">
-                <h3>Executive Income Protection</h3>
-                <p>
-                    Company-funded cover that protects your income if illness or injury
-                    prevents you from working.
-                </p>
-                <ul>
-                    <li>
-                        <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-                        <span>Paid for by the company as a business expense</span>
-                    </li>
-                    <li>
-                        <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-                        <span>Helps the company continue covering your remuneration while you're off sick</span>
-                    </li>
-                    <li>
-                        <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-                        <span>Protects both you and the business</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </section>
+            <p class="booking-note">
+                Calendar not loading, or prefer a full-screen view?
+                <a id="bookingFallback" href="https://bookings.cloud.microsoft/book/AdvantageProtection@NETORGFT5872714.onmicrosoft.com/?ismsaljsauthenabled"
+                   target="_blank" rel="noopener">Open the booking calendar in a new tab</a>.
+            </p>
+        </section>
 
-    <!-- ============ OUR COMMITMENT ============ -->
-    <section class="section">
-        <h2>Our commitment to you</h2>
-        <p class="prose">
-            At Advantage, we're proud to be an <strong>open market agency</strong>, giving us access
-            to a wide range of providers and policy options.
-        </p>
-        <div class="signature">
-            <span class="sig-label">Cost</span>
-            <span class="sig-value">
-                <svg class="sig-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-                There are no fees for our services at any stage.
-            </span>
-        </div>
-    </section>
-
-    <!-- ============ BOOK YOUR APPOINTMENT ============ -->
-    <section class="section" id="book">
-        <h2>Book your appointment</h2>
-        <p class="prose">
-            Pick a time that suits you using the calendar below. Once booked, you'll receive
-            a confirmation with everything you need for the call.
-        </p>
-
-        <div class="booking-frame">
-            <iframe
-                id="booking"
-                src="https://bookings.cloud.microsoft/book/AdvantageProtection@NETORGFT5872714.onmicrosoft.com/?ismsaljsauthenabled"
-                title="Book your business protection appointment with Laurence"
-                loading="lazy">
-            </iframe>
-        </div>
-
-        <p class="booking-note">
-            Calendar not loading, or prefer a full-screen view?
-            <a id="bookingFallback" href="https://bookings.cloud.microsoft/book/AdvantageProtection@NETORGFT5872714.onmicrosoft.com/?ismsaljsauthenabled"
-               target="_blank" rel="noopener">Open the booking calendar in a new tab</a>.
-        </p>
-    </section>
+    </div>
 
     <!-- ============ FOOTER ============ -->
     <footer class="colophon">
-        <p class="motto">Our Experience. <span>Your Advantage.</span></p>
-        <p class="fca">Advantage Financial Solutions &middot; <strong>FCA 965036</strong></p>
-        <p class="legal">
-            Protection advice is free. If a protection policy is arranged, Advantage FS is paid
-            commission by the provider — never by you. Tax treatment depends on individual
-            circumstances and may change.
-        </p>
+        <div class="shell" style="display:contents;">
+            <div>
+                <p class="motto">Our Experience. <span>Your Advantage.</span></p>
+                <p class="fca">Advantage Financial Solutions &middot; <strong>FCA 965036</strong></p>
+                <p class="legal">
+                    Protection advice is free. If a protection policy is arranged, Advantage FS is paid
+                    commission by the provider — never by you. Tax treatment depends on individual
+                    circumstances and may change.
+                </p>
+            </div>
+        </div>
     </footer>
 
 </main>
@@ -505,10 +681,18 @@ img { max-width: 100%; display: block; }
 (function () {
     var iframe = document.getElementById('booking');
     var note = document.querySelector('.booking-note');
-    var warned = false;
-    iframe.addEventListener('error', function () {
-        if (!warned) { warned = true; note.style.fontWeight = '600'; }
-    });
+    var loaded = false;
+
+    iframe.addEventListener('load', function () { loaded = true; });
+
+    setTimeout(function () {
+        if (!loaded) {
+            note.innerHTML = 'The calendar is having trouble loading below — ' +
+                '<a href="' + iframe.src + '" target="_blank" rel="noopener">' +
+                'open the booking calendar in a new tab</a> instead.';
+            note.style.fontWeight = '600';
+        }
+    }, 6000);
 })();
 </script>
 
