@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#fafbfc">
+<meta name="description" content="Book your initial life insurance appointment with Advantage Protection.">
+<title>Advantage Protection — Book Your Appointment</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   ADVANTAGE PROTECTION · APPOINTMENT BOOKING PAGE · V3
+   Split layout: spiel left · calendar docked right (Calendly
+   style). Single column on mobile. Generic template.
+   ============================================================ */
+
+:root {
+    color-scheme: light;
+
+    --gutter: clamp(20px, 5vw, 72px);
+    --measure: 60ch;
+
+    --paper: #fafbfc;
+    --paper-2: #f2f5f7;
+    --ink: #222222;
+    --rule: #dfe6ec;
+    --rule-strong: #c4d2dc;
+    --card: #ffffff;
+
+    --accent: #e91837;
+    --accent-deep: #b8122c;
+    --accent-wash: rgba(233, 24, 55, 0.10);
+    --accent-rule: rgba(233, 24, 55, 0.30);
+    --navy: #3d5a6e;
+
+    --success: #0e9f5d;
+    --success-deep: #0b7c49;
+    --success-wash: rgba(14, 159, 93, 0.10);
+    --success-rule: rgba(14, 159, 93, 0.38);
+
+    --font-display: 'Bricolage Grotesque', system-ui, sans-serif;
+    --font-serif: 'Instrument Serif', Georgia, serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+    font-family: var(--font-display);
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--ink);
+    background: var(--paper);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+img { max-width: 100%; display: block; }
+::selection { background: var(--accent-wash); color: var(--ink); }
+
+:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 3px;
+}
+
+/* ---- Masthead ---- */
+.masthead {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px var(--gutter);
+    border-bottom: 1px solid var(--rule);
+    background: var(--paper);
+}
+.masthead img {
+    box-sizing: content-box;
+    height: 40px;
+    width: auto;
+    padding: 9px 16px;
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(28, 47, 61, 0.07);
+}
+.masthead .mast-tag {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent-deep);
+    border: 1px solid var(--accent-rule);
+    border-radius: 999px;
+    padding: 5px 14px;
+    background: var(--card);
+}
+
+/* ---- Shell + split layout ---- */
+.shell {
+    max-width: 1320px;
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+}
+
+.split {
+    display: grid;
+    gap: clamp(28px, 3.5vw, 56px);
+    align-items: start;
+    padding-block: clamp(32px, 5vh, 56px);
+}
+@media (min-width: 1020px) {
+    .split { grid-template-columns: minmax(0, 1fr) minmax(460px, 560px); }
+}
+
+/* ---- LEFT: content column ---- */
+.content-col { min-width: 0; }
+
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 16px;
+}
+.eyebrow::before {
+    content: "";
+    width: 26px;
+    height: 2px;
+    background: var(--accent);
+}
+
+.content-col h1 {
+    font-size: clamp(30px, 4.4vw, 48px);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    text-wrap: balance;
+    margin-bottom: 18px;
+}
+.content-col h1 em {
+    display: block;
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--accent-deep);
+}
+
+.hero-standfirst {
+    max-width: 54ch;
+    font-size: clamp(15.5px, 1.3vw, 17.5px);
+    line-height: 1.65;
+    color: var(--ink);
+    text-wrap: pretty;
+}
+.hero-standfirst strong { font-weight: 700; }
+
+/* ---- Sections (left column) ---- */
+.block {
+    padding-block: clamp(30px, 4.5vh, 46px);
+    border-top: 1px solid var(--rule);
+    margin-top: clamp(30px, 4.5vh, 46px);
+}
+.block:first-of-type { border-top: none; margin-top: 0; padding-top: clamp(24px, 4vh, 40px); }
+.block .overline {
+    display: block;
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+}
+.block h2 {
+    font-size: clamp(21px, 2.6vw, 29px);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -0.026em;
+    color: var(--ink);
+    text-wrap: balance;
+    margin-bottom: 20px;
+}
+.prose {
+    max-width: var(--measure);
+    font-size: 15.5px;
+    line-height: 1.75;
+    color: var(--ink);
+    text-wrap: pretty;
+}
+.prose strong { font-weight: 700; }
+
+/* ---- Adviser card ---- */
+.adviser {
+    display: grid;
+    gap: 22px;
+    align-items: start;
+    max-width: var(--measure);
+    padding: 22px;
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: 16px;
+    margin-top: 22px;
+}
+@media (min-width: 560px) {
+    .adviser { grid-template-columns: 132px minmax(0, 1fr); gap: 26px; }
+}
+.adviser-photo {
+    width: 100%;
+    max-width: 132px;
+    aspect-ratio: 3 / 4;
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--paper-2);
+    box-shadow: 0 10px 26px -12px rgba(28,47,61,0.34);
+}
+.adviser-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 12%;
+}
+.adviser-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--accent-deep);
+    margin-bottom: 8px;
+}
+.adviser-meta::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-wash);
+}
+.adviser h3 {
+    font-size: 21px;
+    font-weight: 700;
+    letter-spacing: -0.022em;
+    margin-bottom: 3px;
+}
+.adviser .adviser-role {
+    font-size: 13.5px;
+    font-weight: 500;
+    margin-bottom: 12px;
+}
+.adviser p { font-size: 14.5px; line-height: 1.72; }
+
+/* ---- Numbered steps ---- */
+.steps {
+    list-style: none;
+    counter-reset: step;
+    max-width: var(--measure);
+    margin-top: 6px;
+}
+.steps li {
+    counter-increment: step;
+    position: relative;
+    padding: 18px 0 18px 60px;
+    border-bottom: 1px solid var(--rule);
+}
+.steps li:first-child { border-top: 1px solid var(--rule); }
+.steps li::before {
+    content: counter(step, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 18px;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 25px;
+    line-height: 1;
+    color: var(--accent-deep);
+}
+.steps .k-title {
+    display: block;
+    font-size: 15.5px;
+    font-weight: 650;
+    letter-spacing: -0.012em;
+    margin-bottom: 4px;
+}
+.steps .k-body {
+    display: block;
+    font-size: 14.5px;
+    line-height: 1.68;
+    color: var(--ink);
+}
+
+/* ---- Checklist card ---- */
+.checklist {
+    max-width: var(--measure);
+    padding: 20px 22px;
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-left: 5px solid var(--accent);
+    border-radius: 14px;
+    margin-top: 6px;
+}
+.checklist ul { list-style: none; }
+.checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    font-size: 15px;
+    line-height: 1.6;
+}
+.checklist .check {
+    width: 19px;
+    height: 19px;
+    flex: 0 0 auto;
+    margin-top: 3px;
+    color: var(--accent);
+}
+
+/* ---- Free / commitment callout ---- */
+.signature {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding: 20px 24px;
+    background: linear-gradient(90deg, var(--success-wash), transparent 78%);
+    border: 1px solid var(--success-rule);
+    border-left: 5px solid var(--success);
+    border-radius: 14px;
+    max-width: var(--measure);
+    margin-top: 6px;
+}
+.signature .sig-label { font-size: 15px; font-weight: 700; color: var(--success-deep); }
+.signature .sig-value {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-size: clamp(16.5px, 1.5vw, 19px);
+    font-weight: 700;
+    letter-spacing: -0.015em;
+}
+.signature .sig-check { width: 20px; height: 20px; flex: 0 0 auto; color: var(--success); }
+
+/* ---- RIGHT: docked booking column ---- */
+.booking-col { min-width: 0; }
+@media (min-width: 1020px) {
+    .booking-col {
+        position: sticky;
+        top: 24px;
+    }
+}
+.booking-frame {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 18px 44px -20px rgba(28,47,61,0.30);
+}
+.booking-frame iframe {
+    display: block;
+    width: 100%;
+    /* Viewport-height dock with internal scrolling — Calendly behaviour.
+       Mobile falls back to the tall fixed height below. */
+    height: calc(100vh - 48px);
+    min-height: 620px;
+    border: 0;
+    background: #ffffff;
+}
+.booking-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--rule);
+    background: var(--card);
+}
+.booking-head .bh-title {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+}
+.booking-head .bh-sub {
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--ink);
+}
+.booking-head .bh-dot {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12px;
+    font-weight: 650;
+    color: var(--success-deep);
+}
+.booking-head .bh-dot::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--success);
+    box-shadow: 0 0 0 3px var(--success-wash);
+}
+.booking-note {
+    font-size: 13.5px;
+    line-height: 1.65;
+    margin-top: 12px;
+}
+.booking-note a {
+    color: var(--accent-deep);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent-rule);
+    padding-bottom: 2px;
+}
+.booking-note a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* ---- Footer ---- */
+.colophon {
+    border-top: 1px solid var(--rule-strong);
+    padding-block: 38px 46px;
+    display: grid;
+    gap: 24px;
+}
+@media (min-width: 760px) {
+    .colophon { grid-template-columns: minmax(0, 1fr) auto; align-items: end; }
+}
+.colophon .motto {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: clamp(20px, 2.3vw, 26px);
+    margin-bottom: 8px;
+}
+.colophon .motto span { color: var(--accent-deep); }
+.colophon .fca { font-size: 13px; font-weight: 600; margin-bottom: 12px; }
+.colophon .fca strong { color: var(--accent-deep); }
+.colophon .legal { font-size: 13px; line-height: 1.7; max-width: 62ch; }
+.colophon .foot-right {
+    display: grid;
+    gap: 8px;
+    justify-items: start;
+}
+@media (min-width: 760px) { .colophon .foot-right { justify-items: end; text-align: right; } }
+.colophon .ref { font-size: 12.5px; color: var(--ink); }
+
+/* ---- Mobile: single column, calendar after the hero ---- */
+@media (max-width: 1019px) {
+    .split { grid-template-columns: 1fr; }
+    .booking-col { order: -1; margin-bottom: 4px; }
+    /* keep it after the hero: pull the hero out of ordering instead */
+    .content-col .hero-block { order: -2; }
+    .split { display: flex; flex-direction: column; }
+    .content-col { display: contents; }
+    .hero-block { order: 1; }
+    .booking-col { order: 2; }
+    .content-col .after-booking { order: 3; }
+    .booking-frame iframe { height: 1150px; }
+}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+    <img src="bbb.png" alt="Advantage Protection">
+    <span class="mast-tag">Free appointment &middot; No obligation</span>
+</header>
+
+<main class="shell">
+    <div class="split">
+
+        <!-- ============ LEFT COLUMN ============ -->
+        <div class="content-col">
+
+            <div class="hero-block">
+                <p class="eyebrow">Your life insurance appointment</p>
+                <h1>Life insurance for your new mortgage <em>Book a time that suits you</em></h1>
+                <p class="hero-standfirst">
+                    We called to introduce ourselves and arrange your <strong>initial appointment</strong>
+                    to discuss life insurance for your new mortgage. You'll be meeting our financial
+                    adviser, <strong>Laurence</strong> — the appointment usually takes around
+                    <strong>10–15 minutes</strong>, and you can choose a time in the calendar
+                    alongside this.
+                </p>
+            </div>
+
+            <div class="after-booking">
+                <!-- Your adviser -->
+                <section class="block">
+                    <span class="overline">Who you'll speak to</span>
+                    <h2>Meet your adviser</h2>
+                    <div class="adviser">
+                        <div class="adviser-photo">
+                            <img src="adviser.png" alt="Laurence, Financial Adviser at Advantage Protection">
+                        </div>
+                        <div>
+                            <p class="adviser-meta">Your financial adviser</p>
+                            <h3>Laurence</h3>
+                            <p class="adviser-role">Specialist protection adviser</p>
+                            <p>
+                                Laurence will give you a clear overview of your life insurance options and
+                                review any existing cover you may have. Afterwards, we'll send you a summary
+                                of everything discussed, including a tailored recommendation of
+                                cost-effective providers.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- What to expect -->
+                <section class="block">
+                    <span class="overline">The appointment</span>
+                    <h2>What to expect</h2>
+                    <p class="prose">
+                        Your appointment is a short, informal conversation — no jargon, no pressure.
+                        Here's how it flows:
+                    </p>
+                    <ol class="steps">
+                        <li>
+                            <span class="k-title">A clear overview of your options</span>
+                            <span class="k-body">Laurence walks you through the life insurance options relevant to your new mortgage, in plain English.</span>
+                        </li>
+                        <li>
+                            <span class="k-title">A review of any existing cover</span>
+                            <span class="k-body">If you already have policies in place, we'll check they still fit your circumstances and your new mortgage.</span>
+                        </li>
+                        <li>
+                            <span class="k-title">A written summary afterwards</span>
+                            <span class="k-body">Following the appointment, we'll send you a summary of everything discussed, including a tailored recommendation of cost-effective providers.</span>
+                        </li>
+                    </ol>
+                </section>
+
+                <!-- What to have to hand -->
+                <section class="block">
+                    <span class="overline">Before we speak</span>
+                    <h2>What to have to hand</h2>
+                    <p class="prose">
+                        If you have them available, it helps to have details of any existing life insurance
+                        policies ready — but don't worry if not, we can work without them.
+                    </p>
+                    <div class="checklist">
+                        <ul>
+                            <li>
+                                <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                                <span>Existing life insurance policy details — provider, level of cover and monthly cost</span>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Commitment -->
+                <section class="block">
+                    <span class="overline">Why Advantage</span>
+                    <h2>Our commitment to you</h2>
+                    <p class="prose">
+                        At Advantage, we're proud to be an <strong>open market agency</strong>, giving us access
+                        to a wide range of providers and policy options.
+                    </p>
+                    <div class="signature">
+                        <span class="sig-label">Cost</span>
+                        <span class="sig-value">
+                            <svg class="sig-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                            There are no fees for our services at any stage.
+                        </span>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- ============ RIGHT COLUMN: DOCKED CALENDAR ============ -->
+        <div class="booking-col" id="book">
+            <div class="booking-frame">
+                <div class="booking-head">
+                    <div>
+                        <p class="bh-title">Book your appointment</p>
+                        <p class="bh-sub">with Laurence &middot; 10–15 minutes &middot; free</p>
+                    </div>
+                    <span class="bh-dot">Available now</span>
+                </div>
+                <iframe
+                    id="booking"
+                    src="https://bookings.cloud.microsoft/book/AdvantageProtectionxHooprecruitment@NETORGFT5872714.onmicrosoft.com/?ismsaljsauthenabled"
+                    title="Book your appointment with Laurence"
+                    loading="lazy">
+                </iframe>
+            </div>
+            <p class="booking-note">
+                Calendar not loading, or prefer a full-screen view?
+                <a id="bookingFallback" href="https://bookings.cloud.microsoft/book/AdvantageProtectionxHooprecruitment@NETORGFT5872714.onmicrosoft.com/?ismsaljsauthenabled"
+                   target="_blank" rel="noopener">Open the booking calendar in a new tab</a>.
+            </p>
+        </div>
+
+    </div>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="colophon">
+    <div class="shell" style="display:contents;">
+        <div>
+            <p class="motto">Our Experience. <span>Your Advantage.</span></p>
+            <p class="fca">Advantage Financial Solutions &middot; <strong>FCA 965036</strong></p>
+            <p class="legal">
+                Protection advice is free. If a protection policy is arranged, Advantage FS is paid
+                commission by the provider — never by you.
+            </p>
+        </div>
+        <div class="foot-right">
+            <p class="ref">&copy; 2026 Advantage Financial Solutions</p>
+            <p class="ref">Company no. 12291836</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+(function () {
+    var iframe = document.getElementById('booking');
+    var note = document.querySelector('.booking-note');
+    var loaded = false;
+
+    iframe.addEventListener('load', function () { loaded = true; });
+
+    setTimeout(function () {
+        if (!loaded) {
+            note.innerHTML = 'The calendar is having trouble loading — ' +
+                '<a href="' + iframe.src + '" target="_blank" rel="noopener">' +
+                'open the booking calendar in a new tab</a> instead.';
+            note.style.fontWeight = '600';
+        }
+    }, 6000);
+})();
+</script>
+
+</body>
+</html>
